@@ -13,6 +13,30 @@ class Person{
         this.#picture=picture;
     }
 
+    getName(){
+        return this.#name;
+    }
+
+    getFirstLastName(){
+        return this.#lastname1;
+    }
+
+    getSecondLastName(){
+        return this.#lastname2;
+    }
+
+    getBorn(){
+        return this.#born;
+    }
+
+    getPicture(){
+        return this.#picture;
+    }
+
+    setPicture(newPicture){
+        this.#picture=newPicture;
+    }
+
     toString(){
         return "PERSON: " + this.#name + "\n" + "last Name: " + this.#lastname1 + "\n" 
         + "last Name2: "+this.#lastname2+"\n" + "Born in: " + this.#date + "\n"
