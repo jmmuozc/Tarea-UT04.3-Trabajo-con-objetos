@@ -60,3 +60,5 @@ class Person{
         return fecha;
     }
 }
+
+export{Person}
