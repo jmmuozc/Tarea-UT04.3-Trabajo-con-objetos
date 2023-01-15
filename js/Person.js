@@ -48,7 +48,7 @@ class Person{
 
     toString(){
         return "PERSON: " + this.#name + "\n" + "last Name: " + this.#lastname1 + "\n" 
-        + "last Name2: "+this.#lastname2+"\n" + "Born in: " + this.#date + "\n"
+        + "last Name2: "+this.#lastname2+"\n" + "Born in: " + this.#born + "\n"
         +"picture: "+this.#picture+"\n"
     }
 
