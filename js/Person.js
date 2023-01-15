@@ -9,7 +9,7 @@ class Person{
     #born;
     #picture;
 
-    constructor(name,lastname1,lastname2,born,picture){
+    constructor(name,lastname1,born,lastname2="Example",picture="Base.jpg"){
         if (!stringPattern.test(name)) throw new InvalidString(); 
         if (!stringPattern.test(lastname1)) throw new InvalidString(); 
         if (!stringPattern.test(lastname2)) throw new InvalidString(); 
@@ -45,6 +45,11 @@ class Person{
     setPicture(newPicture){
         if (!this.imgPattern.test(newPicture)) throw new InvalidFile();
         this.#picture=newPicture;
+    }
+
+    setLastNameTwo(lastName){
+        if (!stringPattern.test(lastName)) throw new InvalidString();
+        this.#lastname2=lastName;
     }
 
     toString(){
