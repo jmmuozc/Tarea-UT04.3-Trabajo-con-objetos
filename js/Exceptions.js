@@ -41,3 +41,11 @@ class InvalidNumber extends BaseException {
     }
 }
 
+//Excepción File no es valido
+class InvalidFile extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("File is not valid", fileName, lineNumber);
+        this.name = "Invalid File Exception";
+    }
+}
+
