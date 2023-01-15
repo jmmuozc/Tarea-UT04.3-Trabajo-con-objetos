@@ -9,9 +9,9 @@ class Person{
     #picture;
 
     constructor(name,lastname1,lastname2,born,picture){
-        if (!this.StringPattern.test(name)) throw new InvalidString(); 
-        if (!this.StringPattern.test(lastname1)) throw new InvalidString(); 
-        if (!this.StringPattern.test(lastname2)) throw new InvalidString(); 
+        if (!this.stringPattern.test(name)) throw new InvalidString(); 
+        if (!this.stringPattern.test(lastname1)) throw new InvalidString(); 
+        if (!this.stringPattern.test(lastname2)) throw new InvalidString(); 
         if (!this.datePattern.test(born)) throw new InvalidDate();
         if (!this.imgPattern.test(picture)) throw new InvalidFile();
         this.#name=name;
