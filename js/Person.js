@@ -1,4 +1,4 @@
-import {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidFile} from "./Exceptions.js";
+import {InvalidString,InvalidDate,InvalidFile} from "./Exceptions.js";
 const stringPattern= /^[A-Z]{1}[a-z]{2,}/;
 const imgPattern= /.*(png|jpg|jpeg)$/;
 const datePattern= /^(0[1-9]|[1-2]\d|3[01])(\/)([1-9]|0[1-9]|1[012])(\/)(\d{4})$/;
