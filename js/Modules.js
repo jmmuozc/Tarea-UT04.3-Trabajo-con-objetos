@@ -2,6 +2,9 @@ const stringPattern= /^[A-Z]{1}[a-z]{2,}/;
 const imgPattern= /.*(png|jpg|jpeg)$/;
 const datePattern= /^(0[1-9]|[1-2]\d|3[01])(\/)([1-9]|0[1-9]|1[012])(\/)(\d{4})$/;
 const nationalityPattern= /(ES|FR|GB|RU|US|NaN)$/;
+const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passwdPattern=/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{4,})$/;
+
 
 function stringToDate(StringDate){
     //Transforma en array el String de la fecha dividiendolo por /
@@ -11,4 +14,4 @@ function stringToDate(StringDate){
     return fecha;
 }
 
-export {stringPattern,imgPattern,datePattern,nationalityPattern,stringToDate};
+export {stringPattern,imgPattern,datePattern,nationalityPattern,emailPattern,passwdPattern,stringToDate};
