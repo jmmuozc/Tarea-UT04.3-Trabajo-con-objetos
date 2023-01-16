@@ -21,61 +21,47 @@ class Production {
 
     // Devuelve el nombre de la Production
     getTitle() {
-        if (new.target === Production) throw new AbstractFunction();
         return this.#Title;
     }
 
     // Devuelve la fecha de la Production
     getPublication() {
-        if (new.target === Production) throw new AbstractFunction();
         return this.#Nationality;
     }
 
-    // Devuelve el DNI de la Production
+    // Devuelve la Nacionalidad de la Production
     getNationality() {
-        // No es necesario?
-        if (new.target === Production) throw new AbstractFunction();
         return this.#Nationality;
     }
 
-    // Devuelve el DNI de la Production
+    // Le da valor a la Nacionalidad de la Production
     setNationality(nationality) {
-        // No es necesario?
-        if (new.target === Production) throw new AbstractFunction();
+        if (!nationalityPattern.test(nationality)) throw new InvalidString();
         this.#Nationality = nationality;
     }
 
-    // Devuelve el DNI de la Production
+    // Devuelve la Synopsis de la Production
     getSynopsis() {
-        // No es necesario?
-        if (new.target === Production) throw new AbstractFunction();
         return this.#Synopsis;
     }
 
-    // Devuelve el DNI de la Production
+    // Le da valor a la synopsis de la Production
     setSynopsis(synopsis) {
-        // No es necesario?
-        if (new.target === Production) throw new AbstractFunction();
         this.#Synopsis = synopsis;
     }
 
-    // Devuelve el DNI de la Production
+    // Devuelve la imagen de la Production
     getImage() {
-        // No es necesario?
-        if (new.target === Production) throw new AbstractFunction();
         return this.#Image;
     }
 
-    // Devuelve el DNI de la Production
+    // Le da valor a la imagen de la Production
     setImage(image) {
-        // No es necesario?
-        if (new.target === Production) throw new AbstractFunction();
         this.#Image = image;
     }
 
     //Devuelve la lista en formato cadena
     toString() {
-        if (new.target === Production) throw new AbstractFunction();
 
         return "Production " + this.#Title + "\n" + "Nationality: " + this.#Nationality + "\n" + "Publication Date: " + this.#Publication + "\n"
             + "Synopsis: " + this.#Synopsis + "Image: " + this.#Image;
