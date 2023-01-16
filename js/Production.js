@@ -1,4 +1,4 @@
-import { AbstractClass, InvalidString, InvalidDate, InvalidString, InvalidFile } from "./Exceptions.js";
+import { AbstractClass, InvalidString, InvalidDate, InvalidFile } from "./Exceptions.js";
 import { stringPattern, imgPattern, datePattern, stringToDate, nationalityPattern } from "./Modules.js";
 class Production {
     #Title;

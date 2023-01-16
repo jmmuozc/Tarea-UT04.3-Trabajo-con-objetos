@@ -1,4 +1,5 @@
 import Person from './Person.js';
+import Production from './Production.js';
 try {
     let person= new Person("Lucia","Ruiz","15/9/2002","Suarez","example.jpg");
     console.log(person.getBorn());

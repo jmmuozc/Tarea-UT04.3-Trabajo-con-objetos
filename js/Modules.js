@@ -11,4 +11,4 @@ function stringToDate(StringDate){
     return fecha;
 }
 
-export default {stringPattern,imgPattern,datePattern,nationalityPattern,stringToDate};
+export {stringPattern,imgPattern,datePattern,nationalityPattern,stringToDate};
