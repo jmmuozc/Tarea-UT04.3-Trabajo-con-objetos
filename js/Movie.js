@@ -24,7 +24,7 @@ class Movie extends Production{
         return this.#Locations
     }
     
-    addLocations(location) {
+    addLocation(location) {
         if (!(location instanceof Coordinate)) throw new InvalidObject();
         this.#Locations.push(location);
     }
