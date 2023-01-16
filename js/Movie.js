@@ -1,26 +1,32 @@
-import {InvalidString} from "./Exceptions.js";
-import stringPattern from "./Modules.js";
+import { InvalidObject } from "./Exceptions.js";
+import Coordinate from "./Coordinate.js";
+import Production from "./Production.js";
+import Resource from "./Resource.js";
+class Movie extends Production{
+    #Resource;
+    #Locations=[];
 
-class Movie{
-    #Name;
-    #Description;
-
-    constructor(name,description=""){
-        if (!stringPattern.test(name)) throw new InvalidString();
-        this.#Name=name;
-        this.#Description=description;
+    constructor(resource = new Resource(5, "example.png")) {
+        if (!(resource instanceof Resource)) throw new InvalidObject();
+        this.#Resource = resource;
     }
 
-    getName(){
-        return this.#Name;
+    getResource() {
+        return this.#Resource;
     }
 
-    getDescription(){
-        return this.#Description
+    setResource(resource) {
+        if (!(resource instanceof Resource)) throw new InvalidObject();
+        this.#Resource = resource;
     }
-
-    setDescription(description){
-        this.#Description=description;
+    
+    getLocations() {
+        return this.#Locations
+    }
+    
+    addLocations(location) {
+        if (!(location instanceof Coordinate)) throw new InvalidObject();
+        this.#Locations.push(location);
     }
 }
 
