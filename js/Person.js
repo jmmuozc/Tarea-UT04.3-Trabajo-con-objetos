@@ -1,70 +1,61 @@
-import {InvalidString,InvalidDate,InvalidFile} from "./Exceptions.js";
-const stringPattern= /^[A-Z]{1}[a-z]{2,}/;
-const imgPattern= /.*(png|jpg|jpeg)$/;
-const datePattern= /^(0[1-9]|[1-2]\d|3[01])(\/)([1-9]|0[1-9]|1[012])(\/)(\d{4})$/;
-class Person{
+import { InvalidString,InvalidDate,InvalidFile} from "./Exceptions.js";
+import { stringPattern,imgPattern,datePattern,stringToDate} from "./Modules.js";
+class Person {
     #name;
     #lastname1;
     #lastname2;
     #born;
     #picture;
 
-    constructor(name,lastname1,born,lastname2="Example",picture="Base.jpg"){
-        if (!stringPattern.test(name)) throw new InvalidString(); 
-        if (!stringPattern.test(lastname1)) throw new InvalidString(); 
-        if (!stringPattern.test(lastname2)) throw new InvalidString(); 
+    constructor(name, lastname1, born, lastname2 = "Example", picture = "Base.jpg") {
+        if (!stringPattern.test(name)) throw new InvalidString();
+        if (!stringPattern.test(lastname1)) throw new InvalidString();
+        if (!stringPattern.test(lastname2)) throw new InvalidString();
         if (!datePattern.test(born)) throw new InvalidDate();
         if (!imgPattern.test(picture)) throw new InvalidFile();
-        this.#name=name;
-        this.#lastname1=lastname1;
-        this.#lastname2=lastname2;
-        this.#born=this.stringToDate(born);
-        this.#picture=picture;
+        this.#name = name;
+        this.#lastname1 = lastname1;
+        this.#lastname2 = lastname2;
+        this.#born = stringToDate(born);
+        this.#picture = picture;
     }
 
-    getName(){
+    getName() {
         return this.#name;
     }
 
-    getFirstLastName(){
+    getFirstLastName() {
         return this.#lastname1;
     }
 
-    getSecondLastName(){
+    getSecondLastName() {
         return this.#lastname2;
     }
 
-    getBorn(){
+    getBorn() {
         return this.#born;
     }
 
-    getPicture(){
+    getPicture() {
         return this.#picture;
     }
 
-    setPicture(newPicture){
+    setPicture(newPicture) {
         if (!this.imgPattern.test(newPicture)) throw new InvalidFile();
-        this.#picture=newPicture;
+        this.#picture = newPicture;
     }
 
-    setLastNameTwo(lastName){
+    setLastNameTwo(lastName) {
         if (!stringPattern.test(lastName)) throw new InvalidString();
-        this.#lastname2=lastName;
+        this.#lastname2 = lastName;
     }
 
-    toString(){
-        return "PERSON: " + this.#name + "\n" + "last Name: " + this.#lastname1 + "\n" 
-        + "last Name2: "+this.#lastname2+"\n" + "Born in: " + this.#born + "\n"
-        +"picture: "+this.#picture+"\n"
+    toString() {
+        return "PERSON: " + this.#name + "\n" + "last Name: " + this.#lastname1 + "\n"
+            + "last Name2: " + this.#lastname2 + "\n" + "Born in: " + this.#born + "\n"
+            + "picture: " + this.#picture + "\n"
     }
 
-    stringToDate(StringDate){
-        //Transforma en array el String de la fecha dividiendolo por /
-        let fechaArray=StringDate.split("/");
-        // Transforma en un objeto fecha un conjunto de números
-        let fecha= new Date(Date.UTC(fechaArray[2],(fechaArray[1]-1),fechaArray[0],0,0,0));
-        return fecha;
-    }
 }
 
 export default Person;

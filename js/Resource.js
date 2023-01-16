@@ -1,5 +1,5 @@
 import {InvalidFile,InvalidNumber} from "./Exceptions.js";
-const imgPattern= /.*(png|jpg|jpeg)$/;
+import imgPattern from "./Modules.js";
 
 class Resource{
     #Duration;

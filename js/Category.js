@@ -1,5 +1,5 @@
 import {InvalidString} from "./Exceptions.js";
-const stringPattern= /^[A-Z]{1}[a-z]{2,}/;
+import stringPattern from "./Modules.js";
 
 class Category{
     #Name;

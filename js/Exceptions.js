@@ -49,4 +49,13 @@ class InvalidFile extends BaseException {
     }
 }
 
-export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile}
+//Excepción Clase abstracta
+class AbstractClass extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("Class is abstract", fileName, lineNumber);
+        this.name = "Abstracts Class Exception";
+    }
+}
+
+export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile,
+AbstractClass}
