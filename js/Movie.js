@@ -2,13 +2,25 @@ import { InvalidObject } from "./Exceptions.js";
 import Coordinate from "./Coordinate.js";
 import Production from "./Production.js";
 import Resource from "./Resource.js";
-class Movie extends Production{
+import { stringToDate } from "./Modules.js";
+class Movie extends Production {
     #Resource;
-    #Locations=[];
+    #Title;
+    #Publication;
+    #Nationality;
+    #Synopsis;
+    #Image;
+    #Locations = [];
 
-    constructor(resource = new Resource(5, "example.png")) {
+    constructor(title, publication, nationality = "NaN", synopsis = "", image = "default.png", resource = new Resource(5, "example.png")) {
+        super(title, publication, nationality, synopsis, image);
         if (!(resource instanceof Resource)) throw new InvalidObject();
         this.#Resource = resource;
+        this.#Title = title;
+        this.#Publication = stringToDate(publication);
+        this.#Nationality = nationality;
+        this.#Synopsis = synopsis;
+        this.#Image = image;
     }
 
     getResource() {
@@ -19,11 +31,11 @@ class Movie extends Production{
         if (!(resource instanceof Resource)) throw new InvalidObject();
         this.#Resource = resource;
     }
-    
+
     getLocations() {
         return this.#Locations
     }
-    
+
     addLocation(location) {
         if (!(location instanceof Coordinate)) throw new InvalidObject();
         this.#Locations.push(location);
