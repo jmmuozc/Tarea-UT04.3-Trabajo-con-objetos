@@ -1,5 +1,5 @@
 import Person from './Person.js';
-import Production from './Production.js';
+import Serie from './Serie.js';
 try {
     let person= new Person("Lucia","Ruiz","15/9/2002","Suarez","example.jpg");
     console.log(person.getBorn());
@@ -7,3 +7,12 @@ try {
 } catch (error) {
     console.log(error.message);
 }
+// try {
+    let serie= new Serie("Prueba","15/9/2002","ES","Es una prueba","default.jpg",1);
+    console.log(serie.getNationality());
+    serie.setNationality("NaN");
+    console.log(serie.toString());
+    console.log(serie.getNationality());
+// } catch (error) {
+    // console.log(error.message);
+// }

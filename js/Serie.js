@@ -49,6 +49,10 @@ class Serie extends Production {
         if (!(location instanceof Coordinate)) throw new InvalidObject();
         this.#Locations.push(location);
     }
+
+    toString(){
+        return this.#Nationality;
+    }
 }
 
 export default Serie;

@@ -1,6 +1,4 @@
 import { InvalidNumber } from "./Exceptions.js";
-import Coordinate from "./Coordinate.js";
-import Resource from "./Resource.js";
 class Coordinate {
     #Latitude;
     #Longitude;

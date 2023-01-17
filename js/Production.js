@@ -7,7 +7,7 @@ class Production {
     #Synopsis;
     #Image;
     constructor(title, publication, nationality = "NaN", synopsis = "", image = "default.png") {
-        if (new.target === Production) throw new AbstractClass();
+        // if (new.target === Production) throw new AbstractClass();
         if (!stringPattern.test(title)) throw new InvalidString();
         if (!datePattern.test(publication)) throw new InvalidDate();
         if (!nationalityPattern.test(nationality)) throw new InvalidString();
