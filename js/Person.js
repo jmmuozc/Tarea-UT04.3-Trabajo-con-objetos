@@ -1,3 +1,4 @@
+"use strict";
 import { InvalidString,InvalidDate,InvalidFile} from "./Exceptions.js";
 import { stringPattern,imgPattern,datePattern,stringToDate} from "./Modules.js";
 class Person {
@@ -20,32 +21,32 @@ class Person {
         this.#picture = picture;
     }
 
-    getName() {
+    get Name() {
         return this.#name;
     }
 
-    getFirstLastName() {
+    get FirstLastName() {
         return this.#lastname1;
     }
 
-    getSecondLastName() {
+    get SecondLastName() {
         return this.#lastname2;
     }
 
-    getBorn() {
+    get Born() {
         return this.#born;
     }
 
-    getPicture() {
+    get Picture() {
         return this.#picture;
     }
 
-    setPicture(newPicture) {
+    set Picture(newPicture) {
         if (!this.imgPattern.test(newPicture)) throw new InvalidFile();
         this.#picture = newPicture;
     }
 
-    setLastNameTwo(lastName) {
+    set LastNameTwo(lastName) {
         if (!stringPattern.test(lastName)) throw new InvalidString();
         this.#lastname2 = lastName;
     }

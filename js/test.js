@@ -1,3 +1,4 @@
+"use strict"
 import Person from './Person.js';
 import Serie from './Serie.js';
 try {
@@ -7,12 +8,12 @@ try {
 } catch (error) {
     console.log(error.message);
 }
-// try {
+try {
     let serie= new Serie("Prueba","15/9/2002","ES","Es una prueba","default.jpg",1);
     console.log(serie.getNationality());
-    serie.setNationality("NaN");
+    serie.Nationality("NaN");
     console.log(serie.toString());
     console.log(serie.getNationality());
-// } catch (error) {
-    // console.log(error.message);
-// }
+} catch (error) {
+    console.log(error.message);
+}

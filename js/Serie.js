@@ -1,3 +1,4 @@
+"use strict";
 import { InvalidObject, InvalidNumber } from "./Exceptions.js";
 import Coordinate from "./Coordinate.js";
 import Production from "./Production.js";
@@ -23,29 +24,29 @@ class Serie extends Production {
         this.#Image = image;
     }
 
-    getSeasons() {
+    get Seasons() {
         return this.#Seasons;
     }
 
-    setSeasons(seasons) {
+    set Seasons(seasons) {
         if (isNaN(seasons)) throw new InvalidNumber();
         this.#Seasons = seasons;
     }
 
-    getResource() {
+    get Resource() {
         return this.#Resource;
     }
 
-    addResource(resource) {
+    set Resource(resource) {
         if (!(resource instanceof Resource)) throw new InvalidObject();
         this.#Resource.push(resource);
     }
 
-    getLocations() {
+    get Locations() {
         return this.#Locations
     }
 
-    addLocation(location) {
+    set Location(location) {
         if (!(location instanceof Coordinate)) throw new InvalidObject();
         this.#Locations.push(location);
     }

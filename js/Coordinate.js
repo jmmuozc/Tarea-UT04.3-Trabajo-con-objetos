@@ -1,3 +1,4 @@
+"use strict";
 import { InvalidNumber } from "./Exceptions.js";
 class Coordinate {
     #Latitude;
@@ -10,20 +11,20 @@ class Coordinate {
         this.#Longitude = longitude;
     }
 
-    getLongitude() {
+    get Longitude() {
         return this.#Longitude;
     }
 
-    setLongitude(longitude) {
+    set Longitude(longitude) {
         if (isNaN(longitude)) throw new InvalidNumber();
         this.#Longitude = longitude;
     }
 
-    getLatitude() {
+    get Latitude() {
         return this.#Latitude
     }
 
-    addLatitude(latitude) {
+    set Latitude(latitude) {
         if (isNaN(latitude)) throw new InvalidNumber();
         this.#Latitude.push(latitude);
     }

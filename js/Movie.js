@@ -1,42 +1,32 @@
+"use strict";
 import { InvalidObject } from "./Exceptions.js";
 import Coordinate from "./Coordinate.js";
 import Production from "./Production.js";
 import Resource from "./Resource.js";
-import { stringToDate } from "./Modules.js";
 class Movie extends Production {
     #Resource;
-    #Title;
-    #Publication;
-    #Nationality;
-    #Synopsis;
-    #Image;
     #Locations = [];
 
     constructor(title, publication, nationality = "NaN", synopsis = "", image = "default.png", resource = new Resource(5, "example.png")) {
         super(title, publication, nationality, synopsis, image);
         if (!(resource instanceof Resource)) throw new InvalidObject();
         this.#Resource = resource;
-        this.#Title = title;
-        this.#Publication = stringToDate(publication);
-        this.#Nationality = nationality;
-        this.#Synopsis = synopsis;
-        this.#Image = image;
     }
 
-    getResource() {
+    get Resource() {
         return this.#Resource;
     }
 
-    setResource(resource) {
+    set Resource(resource) {
         if (!(resource instanceof Resource)) throw new InvalidObject();
         this.#Resource = resource;
     }
 
-    getLocations() {
+    get Locations() {
         return this.#Locations
     }
 
-    addLocation(location) {
+    set Locations(location) {
         if (!(location instanceof Coordinate)) throw new InvalidObject();
         this.#Locations.push(location);
     }

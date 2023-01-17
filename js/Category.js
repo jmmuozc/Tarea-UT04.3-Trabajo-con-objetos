@@ -1,3 +1,4 @@
+"use strict";
 import {InvalidString} from "./Exceptions.js";
 import stringPattern from "./Modules.js";
 
@@ -11,15 +12,15 @@ class Category{
         this.#Description=description;
     }
 
-    getName(){
+    get Name(){
         return this.#Name;
     }
 
-    getDescription(){
+    get Description(){
         return this.#Description
     }
 
-    setDescription(description){
+    set Description(description){
         this.#Description=description;
     }
 }

@@ -1,3 +1,4 @@
+"use strict"
 import {InvalidString} from "./Exceptions.js";
 import {stringPattern,emailPattern,passwdPattern} from "./Modules.js";
 
@@ -15,29 +16,29 @@ class User{
         this.password=password;
     }
     
-    getUsername(){
+    get Username(){
         return this.#Username
     }
     
-    setUsername(username){
+    set Username(username){
         if (!stringPattern.test(username)) throw new InvalidString();
         this.#Username=username;
     }
     
-    getEmail(){
+    get Email(){
         return this.#Email
     }
     
-    setEmail(email){
+    set Email(email){
         if (!emailPattern.test(email)) throw new InvalidString();
         this.#Email=email;
     }
     
-    getPassword(){
+    get Password(){
         return this.#Password
     }
     
-    setPassword(password){
+    set Password(password){
         if (!passwdPattern.test(password)) throw new InvalidString();
         this.#Password=password;
     }

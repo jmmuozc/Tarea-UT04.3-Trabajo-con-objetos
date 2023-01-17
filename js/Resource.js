@@ -1,3 +1,4 @@
+"use strict";
 import {InvalidFile,InvalidNumber} from "./Exceptions.js";
 import {imgPattern} from "./Modules.js";
 

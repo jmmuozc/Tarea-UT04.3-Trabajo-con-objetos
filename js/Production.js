@@ -1,3 +1,4 @@
+"use strict";
 import { AbstractClass, InvalidString, InvalidDate, InvalidFile } from "./Exceptions.js";
 import { stringPattern, imgPattern, datePattern, stringToDate, nationalityPattern } from "./Modules.js";
 class Production {
@@ -7,7 +8,7 @@ class Production {
     #Synopsis;
     #Image;
     constructor(title, publication, nationality = "NaN", synopsis = "", image = "default.png") {
-        // if (new.target === Production) throw new AbstractClass();
+        if (new.target === Production) throw new AbstractClass();
         if (!stringPattern.test(title)) throw new InvalidString();
         if (!datePattern.test(publication)) throw new InvalidDate();
         if (!nationalityPattern.test(nationality)) throw new InvalidString();
@@ -20,43 +21,43 @@ class Production {
     }
 
     // Devuelve el nombre de la Production
-    getTitle() {
+    get Title() {
         return this.#Title;
     }
 
     // Devuelve la fecha de la Production
-    getPublication() {
+    get Publication() {
         return this.#Nationality;
     }
 
     // Devuelve la Nacionalidad de la Production
-    getNationality() {
+    get Nationality() {
         return this.#Nationality;
     }
 
     // Le da valor a la Nacionalidad de la Production
-    setNationality(nationality) {
+    set Nationality(nationality) {
         if (!nationalityPattern.test(nationality)) throw new InvalidString();
         this.#Nationality = nationality;
     }
 
     // Devuelve la Synopsis de la Production
-    getSynopsis() {
+    get Synopsis() {
         return this.#Synopsis;
     }
 
     // Le da valor a la synopsis de la Production
-    setSynopsis(synopsis) {
+    set Synopsis(synopsis) {
         this.#Synopsis = synopsis;
     }
 
     // Devuelve la imagen de la Production
-    getImage() {
+    get Image() {
         return this.#Image;
     }
 
     // Le da valor a la imagen de la Production
-    setImage(image) {
+    set Image(image) {
         this.#Image = image;
     }
 
