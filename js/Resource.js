@@ -12,11 +12,11 @@ class Resource{
         this.#link=link;
     }
 
-    getDuration(){
+    get Duration(){
         return this.#Duration;
     }
 
-    getlink(){
+    get link(){
         return this.#link
     }
 
