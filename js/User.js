@@ -42,6 +42,10 @@ class User{
         if (!passwdPattern.test(password)) throw new InvalidString();
         this.#Password=password;
     }
+
+    toString(){
+        return "USER" + "\n" + "username" + this.#Username + "\n" + "email" + this.#Email + "\n" + "password" + this.#Password;
+    }
 }
 
 export default User;

@@ -21,6 +21,9 @@ class Resource{
         return this.#link
     }
 
+    toString(){
+        return "Rersource" + "\n" + " Latitude: "+ this.#Latitude + "\n" + "Longitude: " + this.#Longitude+ "\n" ;
+    }
 }
 
 export default Resource;

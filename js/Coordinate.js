@@ -28,6 +28,10 @@ class Coordinate {
         if (isNaN(latitude)) throw new InvalidNumber();
         this.#Latitude.push(latitude);
     }
+
+    toString(){
+        return "Coordinates" + "\n" + " Latitude: "+ this.#Latitude + "\n" + "Longitude: " + this.#Longitude+ "\n" ;
+    }
 }
 
 export default Coordinate;

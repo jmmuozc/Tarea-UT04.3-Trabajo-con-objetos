@@ -3,25 +3,14 @@ import { InvalidObject, InvalidNumber } from "./Exceptions.js";
 import Coordinate from "./Coordinate.js";
 import Production from "./Production.js";
 import Resource from "./Resource.js";
-import { stringToDate } from "./Modules.js";
 class Serie extends Production {
     #Resource = [];
     #Locations = [];
-    #Title;
-    #Publication;
-    #Nationality;
-    #Synopsis;
-    #Image;
     #Seasons;
 
-    constructor(title, publication, nationality = "NaN", synopsis = "", image = "default.png", seasons = 1) {
+    constructor(title, publication, nationality = "NaN", synopsis = "", image = "default.png",seasons = 1) {
         super(title, publication, nationality, synopsis, image);
         this.#Seasons = seasons;
-        this.#Title = title;
-        this.#Publication = stringToDate(publication);
-        this.#Nationality = nationality;
-        this.#Synopsis = synopsis;
-        this.#Image = image;
     }
 
     get Seasons() {
@@ -52,7 +41,7 @@ class Serie extends Production {
     }
 
     toString(){
-        return this.#Nationality;
+        return super(this.toString()) + "SERIE" + "\n" + "Seasons" + this.#Seasons + "\n" + "Resource" + this.#Resource + "\n" + "Locations" + this.#Locations;
     }
 }
 

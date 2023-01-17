@@ -65,7 +65,7 @@ class Production {
     toString() {
 
         return "Production " + this.#Title + "\n" + "Nationality: " + this.#Nationality + "\n" + "Publication Date: " + this.#Publication + "\n"
-            + "Synopsis: " + this.#Synopsis + "Image: " + this.#Image;
+            + "Synopsis: " + this.#Synopsis + "Image: " + this.#Image + "\n";
     }
 
 }

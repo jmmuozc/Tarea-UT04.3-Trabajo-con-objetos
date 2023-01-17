@@ -23,6 +23,10 @@ class Category{
     set Description(description){
         this.#Description=description;
     }
+
+    toString(){
+        return "CATEGORY" + "\n" + " Name: "+ this.#Name + "\n" + "Description: " + this.#Description+ "\n" ;
+    }
 }
 
 export default Category;

@@ -30,6 +30,10 @@ class Movie extends Production {
         if (!(location instanceof Coordinate)) throw new InvalidObject();
         this.#Locations.push(location);
     }
+
+    toString(){
+        return super(this.toString())+ "Movie" + " Resource: "+ this.#Resource + "\n" + "Locations: " + this.#Locations+ "\n" ;
+    }
 }
 
 export default Movie;
