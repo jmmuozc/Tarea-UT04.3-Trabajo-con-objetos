@@ -57,5 +57,13 @@ class AbstractClass extends BaseException {
     }
 }
 
+//Excepción Objeto Invalido
+class InvalidObject extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("Invalid Object", fileName, lineNumber);
+        this.name = "Invalid Object Exception";
+    }
+}
+
 export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile,
-AbstractClass}
+AbstractClass,InvalidObject}

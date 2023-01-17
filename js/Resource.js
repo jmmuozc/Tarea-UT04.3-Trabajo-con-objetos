@@ -1,5 +1,5 @@
 import {InvalidFile,InvalidNumber} from "./Exceptions.js";
-import imgPattern from "./Modules.js";
+import {imgPattern} from "./Modules.js";
 
 class Resource{
     #Duration;
