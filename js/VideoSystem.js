@@ -7,12 +7,33 @@ let videoSystem = (function () {
 
             #SystemName;
             #Users;
-            #ProductionsList;
             #CategoriesList;
+            #ProductionsList;
             #ActorList;
             #DirectorList;
 
+            /* Estructura para almacenar los objetos
+            #SystemNme //Nombre del sistema
+            #Users: [] //Array con los usuarios
+            #CategoriesList: [ // Array que contiene un objeto literal con la categoria y un array
+            {
+                Category: Category,
+                Productions [Serie,Movie] //Array con las referencias a los objetos Production
+            }
+            ]
+            #ProductionsList: [] //Array con las producciones
+            #ActorList{
+                Actor: Person,
+                Productions [Serie,Movie] //Array con las referencias a los objetos Production
+            }
+            #DirectorList{
+                Director: Person,
+                Productions [Serie,Movie] //Array con las referencias a los objetos Production
+            }
+            */
+           
             constructor(systemName) {
+                // No puede tener menos de 3 letras, para formar un Acronimo o una palabra con sentido
                 if (!stringPattern.test(systemName)) throw new InvalidString();
                 this.#SystemName = systemName;
             }
@@ -22,6 +43,7 @@ let videoSystem = (function () {
             }
 
             set systemName(systemName) {
+                // No puede tener menos de 3 letras, para formar un Acronimo o una palabra con sentido
                 if (!stringPattern.test(systemName)) throw new InvalidString();
                 this.#SystemName = systemName
             }
