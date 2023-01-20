@@ -64,6 +64,13 @@ class InvalidObject extends BaseException {
         this.name = "Invalid Object Exception";
     }
 }
+//Excepción Objeto Invalido
+class CategoryExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This category already exists in the System", fileName, lineNumber);
+        this.name = "Category Already Exists Exception";
+    }
+}
 
 export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile,
-AbstractClass,InvalidObject}
+AbstractClass,InvalidObject,CategoryExists}

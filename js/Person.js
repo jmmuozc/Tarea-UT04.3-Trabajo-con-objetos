@@ -12,12 +12,12 @@ class Person {
         if (!stringPattern.test(name)) throw new InvalidString();
         if (!stringPattern.test(lastname1)) throw new InvalidString();
         if (!stringPattern.test(lastname2)) throw new InvalidString();
-        if (!datePattern.test(born)) throw new InvalidDate();
+        if (!datePattern.test(born) || !(born instanceof Date)) throw new InvalidDate();
         if (!imgPattern.test(picture)) throw new InvalidFile();
         this.#name = name;
         this.#lastname1 = lastname1;
         this.#lastname2 = lastname2;
-        this.#born = stringToDate(born);
+        this.#born = (born instanceof Date)? born : stringToDate(born);
         this.#picture = picture;
     }
 
