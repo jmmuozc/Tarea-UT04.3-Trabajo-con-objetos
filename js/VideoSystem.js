@@ -12,17 +12,32 @@ let videoSystem = (function () {
             #ActorList;
             #DirectorList;
 
-            constructor(systemName){
-                this.#SystemName=systemName;
+            constructor(systemName) {
+                if (!stringPattern.test(systemName)) throw new InvalidString();
+                this.#SystemName = systemName;
+            }
+
+            get systemName() {
+                return this.#SystemName;
+            }
+
+            set systemName(systemName) {
+                if (!stringPattern.test(systemName)) throw new InvalidString();
+                this.#SystemName = systemName
+            }
+
+            // Devuelve un iterador de Categories
+            get CategoriesList() {
+                return this.#CategoriesList[Symbol.iterator]();
             }
 
 
         }
-        
-        let vs= new VideoSystem(systemName);
-        
+
+        let vs = new VideoSystem(systemName);
+
         Object.freeze(vs);
-        
+
         return vs;
     }
     return {
