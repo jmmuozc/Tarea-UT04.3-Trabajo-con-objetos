@@ -36,9 +36,6 @@ let videoSystem = (function () {
             }
             */
             #defaultCategory = new Category("Anonymous category"); //Categoría por defecto	
-            // Imágenes del autor y la categoría por defecto.
-            #defaultAuthorImages;
-            #defaultCategoryImages;
 
             //Funciones privadas
             //Dado una categoría, devuelve la posición de esa categoría en el array de categorías o -1 si no lo encontramos.
