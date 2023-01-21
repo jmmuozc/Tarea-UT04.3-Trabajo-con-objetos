@@ -112,7 +112,7 @@ let videoSystem = (function () {
                 if (!(category instanceof Category)) throw new InvalidObject();
                 let position = this.#getCategoryPosition(category);
                 if (position != -1) {
-                    if (category.title !== this.#defaultCategory.title) {
+                    if (category.Name !== this.#defaultCategory.Name) {
                         // Recogemos todas los índices de las categorías menos las de por defecto y la que estamos borrando
                         let restPositions = Array.from(Array(this.#CategoriesList.length), (el, i) => i);
                         restPositions.splice(position, 1);
@@ -133,6 +133,7 @@ let videoSystem = (function () {
                         throw new DefaultCategoryproductionManagerException();
                     }
                 }
+                return this.#CategoriesList.length;
             }
         }
 

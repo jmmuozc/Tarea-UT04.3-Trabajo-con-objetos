@@ -23,10 +23,11 @@ try {
     console.log(error.message);
 }
 
-// try {
+try {
     let categoryTest= new Category("Test");
     let videoSystemTest= videoSystem.getInstance("CinesAmigos");
     console.log(videoSystemTest.addCategory(categoryTest));
-// } catch (error) {
-//     console.log(error.message);
-// }
+    console.log(videoSystemTest.removeCategory(categoryTest));
+} catch (error) {
+    console.log(error.message);
+}
