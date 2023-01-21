@@ -32,7 +32,7 @@ class Movie extends Production {
     }
 
     toString(){
-        return super(this.toString())+ "Movie" + " Resource: "+ this.#Resource + "\n" + "Locations: " + this.#Locations+ "\n" ;
+        return super.toString()+ "Movie" + " Resource: "+ this.#Resource + "\n" + "Locations: " + this.#Locations+ "\n" ;
     }
 }
 

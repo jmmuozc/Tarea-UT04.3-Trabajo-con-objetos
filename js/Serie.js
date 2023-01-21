@@ -35,13 +35,13 @@ class Serie extends Production {
         return this.#Locations
     }
 
-    set Location(location) {
+    set Locations(location) {
         if (!(location instanceof Coordinate)) throw new InvalidObject();
         this.#Locations.push(location);
     }
 
     toString(){
-        return super(this.toString()) + "SERIE" + "\n" + "Seasons" + this.#Seasons + "\n" + "Resource" + this.#Resource + "\n" + "Locations" + this.#Locations;
+        return super.toString() + "SERIE" + "\n" + "Seasons" + this.#Seasons + "\n" + "Resource" + this.#Resource + "\n" + "Locations" + this.#Locations;
     }
 }
 

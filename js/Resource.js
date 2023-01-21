@@ -22,7 +22,7 @@ class Resource{
     }
 
     toString(){
-        return "Rersource" + "\n" + " Latitude: "+ this.#Latitude + "\n" + "Longitude: " + this.#Longitude+ "\n" ;
+        return "Rersource" + "\n" + " Duration: "+ this.#Duration + "\n" + "Link: " + this.#link+ "\n" ;
     }
 }
 

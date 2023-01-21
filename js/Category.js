@@ -1,6 +1,6 @@
 "use strict";
 import {InvalidString} from "./Exceptions.js";
-import stringPattern from "./Modules.js";
+import {stringPattern} from "./Modules.js";
 
 class Category{
     #Name;

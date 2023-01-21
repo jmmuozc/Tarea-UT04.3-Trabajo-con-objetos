@@ -2,6 +2,7 @@ import Person from "./Person.js";
 import Category from "./Category.js";
 import Movie from "./Movie.js";
 import Serie from "./Serie.js";
+import { stringPattern } from "./Modules.js";
 import { InvalidObject, InvalidString, CategoryExists } from "./Exceptions.js";
 import Production from "./Production.js";
 let videoSystem = (function () {
@@ -12,15 +13,15 @@ let videoSystem = (function () {
 
             #SystemName;
             #Users;
-            #CategoriesListList;
-            #ProductionsList;
-            #ActorList;
-            #DirectorList;
+            #CategoriesList=[];
+            #ProductionsList=[];
+            #ActorList=[];
+            #DirectorList=[];
 
             /* Estructura para almacenar los objetos
             #SystemNme //Nombre del sistema
             #Users: [] //Array con los usuarios
-            #CategoriesListList: [ // Array que contiene un objeto literal con la categoria y un array
+            #CategoriesList: [ // Array que contiene un objeto literal con la categoria y un array
             {
                 Category: Category,
                 Productions [Serie,Movie] //Array con las referencias a los objetos Production
@@ -47,10 +48,10 @@ let videoSystem = (function () {
                 }
 
                 function compareElements(element) {
-                    return (element.category.name === category.name)
+                    return (element.category.Name === category.Name)
                 }
 
-                return this.#CategoriesListList.findIndex(compareElements);
+                return this.#CategoriesList.findIndex(compareElements);
             }
 
             //Dado una produccion, devuelve su posición 
@@ -85,16 +86,16 @@ let videoSystem = (function () {
             }
 
             // Devuelve un iterador de CategoriesList
-            get CategoriesListList() {
-                return this.#CategoriesListList[Symbol.iterator]();
+            get CategoriesList() {
+                return this.#CategoriesList[Symbol.iterator]();
             }
 
             addCategory(category) {
                 if (!(category instanceof Category)) throw new InvalidObject();
                 let position = this.#getCategoryPosition(category);
                 if (position === -1) {
-                    // Añade objeto literal con una propiedad para la categoría y un array para las imágenes dentro de la categoría
-                    this.#CategoriesListList.push(
+                    // Añade objeto literal con una propiedad para la categoría y un array para las producciones dentro de la categoría
+                    this.#CategoriesList.push(
                         {
                             category: category,
                             productions: []
@@ -104,7 +105,7 @@ let videoSystem = (function () {
                     throw new CategoryExists();
                 }
 
-                return this;
+                return this.#CategoriesList.length;
             }
 
             removeCategory(category) {
@@ -153,3 +154,5 @@ let videoSystem = (function () {
     }
 }
 )();
+
+export default videoSystem;
