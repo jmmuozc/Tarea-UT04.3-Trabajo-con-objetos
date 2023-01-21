@@ -1,20 +1,23 @@
 "use strict";
 import { InvalidString,InvalidDate,InvalidFile} from "./Exceptions.js";
-import { stringPattern,imgPattern,datePattern,stringToDate} from "./Modules.js";
+import { stringPattern,imgPattern,datePattern,DNIPattern,stringToDate} from "./Modules.js";
 class Person {
     #name;
     #lastname1;
     #lastname2;
     #born;
     #picture;
+    #dni;
 
-    constructor(name, lastname1, born, lastname2 = "Example", picture = "Base.jpg") {
+    constructor(name, dni,lastname1, born, lastname2 = "Example", picture = "Base.jpg") {
         if (!stringPattern.test(name)) throw new InvalidString();
+        if (!DNIPattern.test(dni)) throw new InvalidString();
         if (!stringPattern.test(lastname1)) throw new InvalidString();
         if (!stringPattern.test(lastname2)) throw new InvalidString();
         if (!datePattern.test(born) || !(born instanceof Date)) throw new InvalidDate();
         if (!imgPattern.test(picture)) throw new InvalidFile();
         this.#name = name;
+        this.#dni = dni;
         this.#lastname1 = lastname1;
         this.#lastname2 = lastname2;
         this.#born = (born instanceof Date)? born : stringToDate(born);
@@ -23,6 +26,10 @@ class Person {
 
     get Name() {
         return this.#name;
+    }
+
+    get dni() {
+        return this.#dni;
     }
 
     get FirstLastName() {
