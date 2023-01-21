@@ -1,9 +1,10 @@
 import Person from "./Person.js";
 import Category from "./Category.js";
+import User from "./User.js";
 import Movie from "./Movie.js";
 import Serie from "./Serie.js";
 import { stringPattern } from "./Modules.js";
-import { InvalidObject, InvalidString, CategoryExists } from "./Exceptions.js";
+import { InvalidObject, InvalidString, CategoryExists, UsernameExists, EmailExists } from "./Exceptions.js";
 import Production from "./Production.js";
 let videoSystem = (function () {
 
@@ -12,11 +13,11 @@ let videoSystem = (function () {
         class VideoSystem {
 
             #SystemName;
-            #Users;
-            #CategoriesList=[];
-            #ProductionsList=[];
-            #ActorList=[];
-            #DirectorList=[];
+            #Users = [];
+            #CategoriesList = [];
+            #ProductionsList = [];
+            #ActorList = [];
+            #DirectorList = [];
 
             /* Estructura para almacenar los objetos
             #SystemNme //Nombre del sistema
@@ -41,7 +42,7 @@ let videoSystem = (function () {
 
             //Funciones privadas
             //Dado una categoría, devuelve la posición de esa categoría en el array de categorías o -1 si no lo encontramos.
-            //Hemos elegido comparar por contenido no por referencia.
+            //Hemos elegido comparar por contenido.
             #getCategoryPosition(category) {
                 if (!(category instanceof Category)) {
                     throw new InvalidObject();
@@ -55,7 +56,7 @@ let videoSystem = (function () {
             }
 
             //Dado una produccion, devuelve su posición 
-            //Hemos elegido comparar por contenido no por referencia.
+            //Hemos elegido comparar por contenido.
             #getProductionPosition(production, productions = this.#ProductionsList) {
                 if (!(production instanceof Production)) {
                     throw new InvalidObject();
@@ -66,6 +67,30 @@ let videoSystem = (function () {
                 }
 
                 return productions.findIndex(compareElements);
+            }
+
+            #getUserPositionUsername(user) {
+                if (!(user instanceof User)) {
+                    throw new InvalidObject();
+                }
+
+                function compareElements(element) {
+                    return (element.username === user.username)
+                }
+
+                return this.#Users.findIndex(compareElements);
+            }
+
+            #getUserPositionEmail(user) {
+                if (!(user instanceof User)) {
+                    throw new InvalidObject();
+                }
+
+                function compareElements(element) {
+                    return (element.email === user.email)
+                }
+
+                return this.#Users.findIndex(compareElements);
             }
 
             constructor(systemName) {
@@ -134,6 +159,38 @@ let videoSystem = (function () {
                     }
                 }
                 return this.#CategoriesList.length;
+            }
+
+
+            //Devuelve todos los usuarios
+            get Users() {
+                let usersArray = this.#Users;
+                return {
+                    *[Symbol.iterator]() {
+                        for (let i = 0; i < usersArray.length; i++) {
+                            yield usersArray[i];
+
+                        }
+                    }
+                }
+            }
+
+            addUser(user) {
+                if (!(user instanceof User)) throw new InvalidObject();
+                let position = this.#getUserPositionUsername(user);
+                let positionEmail = this.#getUserPositionEmail(user);
+                if (position === -1) {
+                    if (positionEmail === -1) {
+                        this.#Users.push(user)
+
+                    } else {
+                        throw new EmailExists();
+                    }
+                } else {
+                    throw new UsernameExists();
+                }
+
+                return this.#Users.length;
             }
         }
 

@@ -64,7 +64,8 @@ class InvalidObject extends BaseException {
         this.name = "Invalid Object Exception";
     }
 }
-//Excepción Objeto Invalido
+
+//Excepción Categoria existe
 class CategoryExists extends BaseException {
     constructor(fileName, lineNumber) {
         super("This category already exists in the System", fileName, lineNumber);
@@ -72,5 +73,21 @@ class CategoryExists extends BaseException {
     }
 }
 
+//Excepción Username existe
+class UsernameExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This username already exists in the System", fileName, lineNumber);
+        this.name = "Username Already Exists Exception";
+    }
+}
+
+//Excepción Email existe
+class EmailExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This email already exists in the System", fileName, lineNumber);
+        this.name = "Email Already Exists Exception";
+    }
+}
+
 export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile,
-AbstractClass,InvalidObject,CategoryExists}
+AbstractClass,InvalidObject,CategoryExists,UsernameExists,EmailExists}
