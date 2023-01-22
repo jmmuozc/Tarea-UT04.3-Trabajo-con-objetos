@@ -292,8 +292,6 @@ try {
     for (let productions of videoSystemTest.getProductionsCategory(found.category)) {
         console.log(productions);
     }
-    // Mostramos el toString
-    console.log(videoSystemTest.toString());
 } catch (error) {
     console.log(error.message);
 }
