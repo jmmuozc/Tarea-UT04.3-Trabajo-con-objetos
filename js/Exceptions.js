@@ -129,7 +129,15 @@ class ProductionExists extends BaseException {
     }
 }
 
+//Excepción not Production existe
+class ProductionNoExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This production do not exists in the System", fileName, lineNumber);
+        this.name = "Production do not Exists Exception";
+    }
+}
+
 
 export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile,
 AbstractClass,InvalidObject,CategoryExists,CategoryNoExists,UsernameExists,EmailExists,UserNoExists,
-UserExists,PersonExists,ProductionExists}
+UserExists,PersonExists,ProductionExists,ProductionNoExists}

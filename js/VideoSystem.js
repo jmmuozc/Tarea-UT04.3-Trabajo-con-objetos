@@ -5,7 +5,8 @@ import Resource from "./Resource.js";
 import Movie from "./Movie.js";
 import Serie from "./Serie.js";
 import { stringPattern } from "./Modules.js";
-import { InvalidObject, InvalidString, CategoryExists, CategoryNoExists, UsernameExists, EmailExists, UserNoExists, UserExists,PersonExists,ProductionExists } from "./Exceptions.js";
+import { InvalidObject, InvalidString, CategoryExists, CategoryNoExists, UsernameExists, EmailExists, UserNoExists, UserExists,PersonExists,
+    ProductionExists,ProductionNoExists } from "./Exceptions.js";
 import Production from "./Production.js";
 let videoSystem = (function () {
 
@@ -118,18 +119,6 @@ let videoSystem = (function () {
                 return this.#DirectorList.findIndex(compareElements);
             }
 
-            #getProductionPosition(movie) {
-                if (!(movie instanceof Movie)) {
-                    throw new InvalidObject();
-                }
-
-                function compareElements(element) {
-                    return (element.tittle === movie.tittle)
-                }
-
-                return this.#ProductionsList.findIndex(compareElements);
-            }
-
 
             constructor(systemName) {
                 // No puede tener menos de 3 letras, para formar un Acronimo o una palabra con sentido
@@ -180,7 +169,7 @@ let videoSystem = (function () {
                         let restPositions = Array.from(Array(this.#CategoriesList.length), (el, i) => i);
                         restPositions.splice(position, 1);
                         restPositions.splice(0, 1);
-                        // Recorremos todas las imágenes de la categoría que estamos borrando 
+                        // Recorremos todas las producciones de la categoría que estamos borrando 
                         for (let production of this.#CategoriesList[position].productions) {
                             let insertInDefault = true;
                             for (let index of restPositions) { // Chequeamos si cada productionn pertenece a otra categoría que no sea la de por defecto
@@ -252,8 +241,42 @@ let videoSystem = (function () {
                 }
             }
 
-            addProductions(production) { }
+            addProductions(production) { 
+                if (!(production instanceof Production)) throw new InvalidObject();
+                let position= this.#getProductionPosition(production);
+                if (position===-1) {
+                    this.#ProductionsList.push(production);
+                }else throw new ProductionExists();
+                
+                return this.#ProductionsList.length;
+            }
+            
+            removeProductions(production){
+                if (!(production instanceof Production)) throw new InvalidObject();
+                if (!(this.#getProductionPosition(production)===-1)) throw new ProductionNoExists();
+                let productionPosition;
+                for (let index of this.#ProductionsList) {
+                    // Comprueba que la produccion exista dentro de cada array de producciones
+                    productionPosition=this.#getProductionPosition(production, this.#CategoriesList[index].productions);
+                    if ( productionPosition> -1) {
+                        this.#CategoriesList[index].productions.splice(productionPosition,1);
+                    }
+                }
+                return this.#ProductionsList.length;
+            }
 
+            //Devuelve todos los usuarios
+            get Actors() {
+                let actorsArray = this.#ActorList;
+                return {
+                    *[Symbol.iterator]() {
+                        for (let i = 0; i < actorsArray.length; i++) {
+                            yield actorsArray[i];
+
+                        }
+                    }
+                }
+            }
 
             personFactory(name, dni, lastname1, born, lastname2 = "Example", picture = "Base.jpg") {
                 let createdPerson = new Person(name, dni, lastname1, born, lastname2, picture);
