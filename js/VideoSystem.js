@@ -499,6 +499,14 @@ let videoSystem = (function () {
                 } else throw new UserExists();
 
             }
+            categoryFactory(name,description="") {
+                let createdCategory = new Category(name,description);
+                let position = this.#getCategoryPosition(createdCategory);
+                if (position === -1) {
+                    return createdCategory;
+                } else throw new UserExists();
+
+            }
 
             movieFactory(title, publication, nationality = "NaN", synopsis = "", image = "default.png", resource = new Resource(5, "example.png")) {
                 let createdMovie = new Movie(title, publication, nationality, synopsis, image, resource);

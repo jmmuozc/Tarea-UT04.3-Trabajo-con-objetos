@@ -7,7 +7,7 @@ import User from './User.js';
 try {
     let videoSystemTest= videoSystem.getInstance("CinesAmigos");
     let userTest= videoSystemTest.userFactory("Test","Test@gmail.com","TestPasswd123");
-    let categoryTest= new Category("Test");
+    let categoryTest= videoSystemTest.categoryFactory("Test");
     console.log("Añadir Categorias");
     console.log(videoSystemTest.addCategory(categoryTest));
     console.log("Eliminar Categorias");
