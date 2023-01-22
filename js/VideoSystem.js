@@ -24,7 +24,7 @@ let videoSystem = (function () {
             #DirectorList = [];
 
             /* Estructura para almacenar los objetos
-            #SystemNme //Nombre del sistema
+            #SystemName //Nombre del sistema
             #Users: [] //Array con los usuarios
             #CategoriesList: [ // Array que contiene un objeto literal con la categoria y un array
             {
@@ -67,7 +67,7 @@ let videoSystem = (function () {
                 }
 
                 function compareElements(element) {
-                    return (element.tittle === production.tittle)
+                    return (element.Title === production.Title)
                 }
 
                 return productions.findIndex(compareElements);
@@ -79,7 +79,7 @@ let videoSystem = (function () {
                 }
 
                 function compareElements(element) {
-                    return (element.username === user.username)
+                    return (element.Username === user.Username)
                 }
 
                 return this.#Users.findIndex(compareElements);
@@ -91,7 +91,7 @@ let videoSystem = (function () {
                 }
 
                 function compareElements(element) {
-                    return (element.email === user.email)
+                    return (element.Email === user.Email)
                 }
 
                 return this.#Users.findIndex(compareElements);
@@ -255,15 +255,30 @@ let videoSystem = (function () {
 
             removeProductions(production) {
                 if (!(production instanceof Production)) throw new InvalidObject();
-                if (!(this.#getProductionPosition(production) === -1)) throw new ProductionNoExists();
+                if (this.#getProductionPosition(production) === -1) throw new ProductionNoExists();
                 let productionPosition;
-                for (let index of this.#ProductionsList) {
-                    // Comprueba que la produccion exista dentro de cada array de producciones
-                    productionPosition = this.#getProductionPosition(production, this.#CategoriesList[index].productions);
+                for (let index of this.#CategoriesList) {
+                    // Comprueba que la produccion exista dentro de cada array dentro de Categorias
+                    productionPosition = this.#getProductionPosition(production, index.productions);
                     if (productionPosition > -1) {
-                        this.#CategoriesList[index].productions.splice(productionPosition, 1);
+                        this.index.productions.splice(productionPosition, 1);
                     }
                 }
+                for (let index of this.#ActorList) {
+                    // Comprueba que la produccion exista dentro de cada array dentro de Actores
+                    productionPosition = this.#getProductionPosition(production, index.productions);
+                    if (productionPosition > -1) {
+                        index.productions.splice(productionPosition, 1);
+                    }
+                }
+                for (let index of this.#DirectorList) {
+                    // Comprueba que la produccion exista dentro de cada array dentro de Directores
+                    productionPosition = this.#getProductionPosition(production, index.productions);
+                    if (productionPosition > -1) {
+                        index.productions.splice(productionPosition, 1);
+                    }
+                }
+                this.#ProductionsList.splice(this.#getProductionPosition(production),1);
                 return this.#ProductionsList.length;
             }
 
@@ -494,7 +509,7 @@ let videoSystem = (function () {
                 let createdUser = new User(username,email,password);
                 let positionUsername = this.#getUserPositionUsername(createdUser);
                 let positionEmail = this.#getUserPositionEmail(createdUser);
-                if (positionEmail === -1 && positionUsername == positionEmail) {
+                if (positionEmail === -1 && positionUsername === positionEmail) {
                     return createdUser;
                 } else throw new UserExists();
 

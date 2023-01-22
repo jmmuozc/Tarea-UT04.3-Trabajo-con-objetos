@@ -10,6 +10,7 @@ class Serie extends Production {
 
     constructor(title, publication, nationality = "NaN", synopsis = "", image = "default.png",seasons = 1) {
         super(title, publication, nationality, synopsis, image);
+        if (isNaN(seasons)) throw new InvalidNumber();
         this.#Seasons = seasons;
     }
 
