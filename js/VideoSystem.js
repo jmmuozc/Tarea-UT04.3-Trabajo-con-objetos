@@ -6,7 +6,7 @@ import Movie from "./Movie.js";
 import Serie from "./Serie.js";
 import { stringPattern } from "./Modules.js";
 import { InvalidObject, InvalidString, CategoryExists, CategoryNoExists, UsernameExists, EmailExists, UserNoExists, UserExists,PersonExists,
-    ProductionExists,ProductionNoExists } from "./Exceptions.js";
+    ProductionExists,ProductionNoExists,ActorExists,ActorNoExists,DirectorExists,DirectorNoExists } from "./Exceptions.js";
 import Production from "./Production.js";
 let videoSystem = (function () {
 
@@ -276,6 +276,65 @@ let videoSystem = (function () {
                         }
                     }
                 }
+            }
+
+            addActor(actor){
+                if (!(actor instanceof Production)) throw new InvalidObject();
+                position=this.#getActorPosition(actor);
+                if (position===-1) {
+                    this.#ActorList.push(actor);
+                }else throw new ActorExists();
+
+                return this.#ActorList.length;
+            }
+
+            removeActor(actor) {
+                if (!(actor instanceof Person)) throw new InvalidObject();
+                let position=this.#getActorPosition(actor);
+                if (position != -1) {
+                    this.#ActorList.splice(position, 1);
+                } else throw new ActorNoExists();
+                return this.#ActorList.length;
+            }
+
+            //Devuelve todos los usuarios
+            get Directors() {
+                let directorsArray = this.#DirectorList;
+                return {
+                    *[Symbol.iterator]() {
+                        for (let i = 0; i < directorsArray.length; i++) {
+                            yield directorsArray[i];
+
+                        }
+                    }
+                }
+            }
+
+            addDirector(director){
+                if (!(director instanceof Production)) throw new InvalidObject();
+                position=this.#getDirectorPosition(director);
+                if (position===-1) {
+                    this.#ActorList.push(director);
+                }else throw new DirectorExists();
+
+                return this.#ActorList.length;
+            }
+
+            removeDirector(director) {
+                if (!(director instanceof Person)) throw new InvalidObject();
+                let position=this.#getDirectorPosition(director);
+                if (position != -1) {
+                    this.#DirectorList.splice(position, 1);
+                } else throw new DirectorNoExists();
+                return this.#DirectorList.length;
+            }
+
+            assignCategory(category,production){
+
+            }
+
+            deassignCategory(category,production){
+
             }
 
             personFactory(name, dni, lastname1, born, lastname2 = "Example", picture = "Base.jpg") {

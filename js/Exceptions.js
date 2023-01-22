@@ -137,7 +137,40 @@ class ProductionNoExists extends BaseException {
     }
 }
 
+//Excepción Actor existe
+class ActorExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This actor already exists in the System", fileName, lineNumber);
+        this.name = "Actor already Exists Exception";
+    }
+}
+
+//Excepción not Actor existe
+class ActorNoExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This actor do not exists in the System", fileName, lineNumber);
+        this.name = "Actor do not Exists Exception";
+    }
+}
+
+//Excepción Director existe
+class DirectorExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This director already exists in the System", fileName, lineNumber);
+        this.name = "Director already Exists Exception";
+    }
+}
+
+//Excepción not Director existe
+class DirectorNoExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This director do not exists in the System", fileName, lineNumber);
+        this.name = "Director do not Exists Exception";
+    }
+}
+
 
 export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile,
 AbstractClass,InvalidObject,CategoryExists,CategoryNoExists,UsernameExists,EmailExists,UserNoExists,
-UserExists,PersonExists,ProductionExists,ProductionNoExists}
+UserExists,PersonExists,ProductionExists,ProductionNoExists,ActorExists,ActorNoExists,DirectorExists,
+DirectorNoExists}
