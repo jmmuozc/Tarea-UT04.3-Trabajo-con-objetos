@@ -491,7 +491,7 @@ let videoSystem = (function () {
             }
 
             userFactory(username, email, password) {
-                let createdUser = new User(username, email, password);
+                let createdUser = new User(username,email,password);
                 let positionUsername = this.#getUserPositionUsername(createdUser);
                 let positionEmail = this.#getUserPositionEmail(createdUser);
                 if (positionEmail === -1 && positionUsername == positionEmail) {
@@ -504,7 +504,7 @@ let videoSystem = (function () {
                 let position = this.#getCategoryPosition(createdCategory);
                 if (position === -1) {
                     return createdCategory;
-                } else throw new UserExists();
+                } else throw new CategoryExists();
 
             }
 

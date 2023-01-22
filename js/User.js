@@ -13,7 +13,7 @@ class User{
         if (!passwdPattern.test(password)) throw new InvalidString();
         this.#Username=username;
         this.#Email=email;
-        this.password=password;
+        this.#Password=password;
     }
     
     get Username(){
@@ -44,7 +44,7 @@ class User{
     }
 
     toString(){
-        return "USER" + "\n" + "username" + this.#Username + "\n" + "email" + this.#Email + "\n" + "password" + this.#Password;
+        return "USER" + "\n" + "username: " + this.#Username + "\n" + "email: " + this.#Email + "\n" + "password: " + this.#Password;
     }
 }
 
