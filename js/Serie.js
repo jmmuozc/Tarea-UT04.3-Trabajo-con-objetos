@@ -42,7 +42,7 @@ class Serie extends Production {
     }
 
     toString(){
-        return super.toString() + "SERIE" + "\n" + "Seasons" + this.#Seasons + "\n" + "Resource" + this.#Resource + "\n" + "Locations" + this.#Locations;
+        return super.toString() + "SERIE" + "\n" + "Seasons: " + this.#Seasons + "\n" + "Resource: " + this.#Resource + "\n" + "Locations: " + this.#Locations;
     }
 }
 

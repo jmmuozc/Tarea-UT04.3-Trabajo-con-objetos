@@ -46,7 +46,7 @@ let videoSystem = (function () {
 
             //Funciones privadas
             //Dado una categoría, devuelve la posición de esa categoría en el array de categorías o -1 si no lo encontramos.
-            //Hemos elegido comparar por contenido.
+            //Comparando por contenido
             #getCategoryPosition(category) {
                 if (!(category instanceof Category)) {
                     throw new InvalidObject();
@@ -261,7 +261,7 @@ let videoSystem = (function () {
                     // Comprueba que la produccion exista dentro de cada array dentro de Categorias
                     productionPosition = this.#getProductionPosition(production, index.productions);
                     if (productionPosition > -1) {
-                        this.index.productions.splice(productionPosition, 1);
+                        index.productions.splice(productionPosition, 1);
                     }
                 }
                 for (let index of this.#ActorList) {
@@ -278,7 +278,7 @@ let videoSystem = (function () {
                         index.productions.splice(productionPosition, 1);
                     }
                 }
-                this.#ProductionsList.splice(this.#getProductionPosition(production),1);
+                this.#ProductionsList.splice(productionPosition,1);
                 return this.#ProductionsList.length;
             }
 
@@ -297,7 +297,7 @@ let videoSystem = (function () {
 
             addActor(actor) {
                 if (!(actor instanceof Person)) throw new InvalidObject();
-                position = this.#getActorPosition(actor);
+                let position = this.#getActorPosition(actor);
                 if (position === -1) {
                     this.#ActorList.push(
                         {
@@ -334,7 +334,7 @@ let videoSystem = (function () {
 
             addDirector(director) {
                 if (!(director instanceof Person)) throw new InvalidObject();
-                position = this.#getDirectorPosition(director);
+                let position = this.#getDirectorPosition(director);
                 if (position === -1) {
                     this.#DirectorList.push(
                         {
@@ -364,8 +364,7 @@ let videoSystem = (function () {
                     if (!(element instanceof Production)) throw new InvalidObject();
                     if (this.#getProductionPosition(element) === -1) this.addProductions(element);
                     if (this.#getProductionPosition(element, this.#CategoriesList[catPosition].productions) === -1) {
-                        this.#CategoriesList[catPosition].productions.push(element);
-                    }
+                        this.#CategoriesList[catPosition].productions.push(this.#ProductionsList[this.#getProductionPosition(element)]);                    }
                 });
                 return this.#CategoriesList[catPosition].length;
             }
@@ -395,7 +394,7 @@ let videoSystem = (function () {
                     if (!(element instanceof Production)) throw new InvalidObject();
                     if (this.#getProductionPosition(element) === -1) this.addProductions(element);
                     if (this.#getProductionPosition(element, this.#DirectorList[directorPosition].productions) === -1) {
-                        this.#DirectorList[directorPosition].productions.push(element);
+                        this.#DirectorList[directorPosition].productions.push(this.#ProductionsList[this.#getProductionPosition(element)]);
                     }
                 });
                 return this.#DirectorList[directorPosition].length;
@@ -426,7 +425,7 @@ let videoSystem = (function () {
                     if (!(element instanceof Production)) throw new InvalidObject();
                     if (this.#getProductionPosition(element) === -1) this.addProductions(element);
                     if (this.#getProductionPosition(element, this.#ActorList[actorPosition].productions) === -1) {
-                        this.#ActorList[actorPosition].productions.push(element);
+                        this.#ActorList[actorPosition].productions.push(this.#ProductionsList[this.#getProductionPosition(element)]);
                     }
                 });
                 return this.#ActorList[actorPosition].length;
@@ -488,8 +487,7 @@ let videoSystem = (function () {
             *getProductionsCategory(category){
                 if (!(category instanceof Category)) throw new InvalidObject();
 
-                let arrayProductionsCategory= this.#ProductionsList[this.#getCategoryPosition(category)].productions;
-
+                let arrayProductionsCategory= this.#CategoriesList[this.#getCategoryPosition(category)].productions;
                 for (let productions of arrayProductionsCategory){
                     yield productions;
                 }
@@ -537,6 +535,11 @@ let videoSystem = (function () {
                 if (position === -1) {
                     return createdSerie;
                 } else throw new ProductionExists();
+            }
+
+            toString(){
+                return "VideoSystem: "+ this.#SystemName + "\n" + "Users: "+ this.#Users + "\n"+ "Categories: "+ this.#CategoriesList + "\n"
+                + "Productions: "+ this.#ProductionsList + "\n"+ "Actors: "+ this.#ActorList + "\n"+ "Directors: "+ this.#DirectorList + "\n";
             }
         }
 
