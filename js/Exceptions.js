@@ -73,6 +73,14 @@ class CategoryExists extends BaseException {
     }
 }
 
+//Excepción no Categoria existe
+class CategoryNoExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This category does not exists in the System", fileName, lineNumber);
+        this.name = "Category does not Exists Exception";
+    }
+}
+
 //Excepción Username existe
 class UsernameExists extends BaseException {
     constructor(fileName, lineNumber) {
@@ -89,5 +97,39 @@ class EmailExists extends BaseException {
     }
 }
 
+//Excepción no Usuario existe
+class UserNoExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This user does not exists in the System", fileName, lineNumber);
+        this.name = "User does not Exists Exception";
+    }
+}
+
+//Excepción Usuario existe
+class UserExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This user already exists in the System", fileName, lineNumber);
+        this.name = "User already Exists Exception";
+    }
+}
+
+//Excepción Person existe
+class PersonExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This person already exists in the System", fileName, lineNumber);
+        this.name = "Person already Exists Exception";
+    }
+}
+
+//Excepción Production existe
+class ProductionExists extends BaseException {
+    constructor(fileName, lineNumber) {
+        super("This production already exists in the System", fileName, lineNumber);
+        this.name = "Production already Exists Exception";
+    }
+}
+
+
 export {InvalidAccessConstructorException,InvalidString,InvalidDate,InvalidNumber,InvalidFile,
-AbstractClass,InvalidObject,CategoryExists,UsernameExists,EmailExists}
+AbstractClass,InvalidObject,CategoryExists,CategoryNoExists,UsernameExists,EmailExists,UserNoExists,
+UserExists,PersonExists,ProductionExists}

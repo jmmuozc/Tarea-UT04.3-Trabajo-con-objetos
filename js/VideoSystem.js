@@ -1,10 +1,11 @@
 import Person from "./Person.js";
 import Category from "./Category.js";
 import User from "./User.js";
+import Resource from "./Resource.js";
 import Movie from "./Movie.js";
 import Serie from "./Serie.js";
 import { stringPattern } from "./Modules.js";
-import { InvalidObject, InvalidString, CategoryExists, UsernameExists, EmailExists } from "./Exceptions.js";
+import { InvalidObject, InvalidString, CategoryExists, CategoryNoExists, UsernameExists, EmailExists, UserNoExists, UserExists,PersonExists,ProductionExists } from "./Exceptions.js";
 import Production from "./Production.js";
 let videoSystem = (function () {
 
@@ -93,6 +94,43 @@ let videoSystem = (function () {
                 return this.#Users.findIndex(compareElements);
             }
 
+            #getActorPosition(actor) {
+                if (!(actor instanceof Person)) {
+                    throw new InvalidObject();
+                }
+
+                function compareElements(element) {
+                    return (element.dni === actor.dni)
+                }
+
+                return this.#ActorList.findIndex(compareElements);
+            }
+
+            #getDirectorPosition(director) {
+                if (!(director instanceof Person)) {
+                    throw new InvalidObject();
+                }
+
+                function compareElements(element) {
+                    return (element.dni === director.dni)
+                }
+
+                return this.#DirectorList.findIndex(compareElements);
+            }
+
+            #getProductionPosition(movie) {
+                if (!(movie instanceof Movie)) {
+                    throw new InvalidObject();
+                }
+
+                function compareElements(element) {
+                    return (element.tittle === movie.tittle)
+                }
+
+                return this.#ProductionsList.findIndex(compareElements);
+            }
+
+
             constructor(systemName) {
                 // No puede tener menos de 3 letras, para formar un Acronimo o una palabra con sentido
                 if (!stringPattern.test(systemName)) throw new InvalidString();
@@ -154,10 +192,8 @@ let videoSystem = (function () {
                             if (insertInDefault) this.#CategoriesList[0].productions.push(production);
                         }
                         this.#CategoriesList.splice(position, 1);
-                    } else {
-                        throw new DefaultCategoryproductionManagerException();
                     }
-                }
+                } else throw new CategoryNoExists();
                 return this.#CategoriesList.length;
             }
 
@@ -177,9 +213,9 @@ let videoSystem = (function () {
 
             addUser(user) {
                 if (!(user instanceof User)) throw new InvalidObject();
-                let position = this.#getUserPositionUsername(user);
+                let positionUsername = this.#getUserPositionUsername(user);
                 let positionEmail = this.#getUserPositionEmail(user);
-                if (position === -1) {
+                if (positionUsername === -1) {
                     if (positionEmail === -1) {
                         this.#Users.push(user)
 
@@ -191,6 +227,68 @@ let videoSystem = (function () {
                 }
 
                 return this.#Users.length;
+            }
+
+            removeUser(user) {
+                if (!(user instanceof User)) throw new InvalidObject();
+                let positionUsername = this.#getUserPositionUsername(user);
+                let positionEmail = this.#getUserPositionEmail(user);
+                if (positionUsername != -1 && positionUsername == positionEmail) {
+                    this.#Users.splice(positionUsername, 1);
+                } else throw new UserNoExists();
+                return this.#Users.length;
+            }
+
+            //Devuelve todos los usuarios
+            get Productions() {
+                let productionsArray = this.#ProductionsList;
+                return {
+                    *[Symbol.iterator]() {
+                        for (let i = 0; i < productionsArray.length; i++) {
+                            yield productionsArray[i];
+
+                        }
+                    }
+                }
+            }
+
+            addProductions(production) { }
+
+
+            personFactory(name, dni, lastname1, born, lastname2 = "Example", picture = "Base.jpg") {
+                let createdPerson = new Person(name, dni, lastname1, born, lastname2, picture);
+                let positionActor = this.#getActorPosition(createdPerson);
+                let positionDirector = this.#getDirectorPosition(createdPerson);
+                if (positionDirector == -1 && positionActor ==-1) {
+                    return createdPerson;
+                } else throw new PersonExists();
+
+            }
+
+            userFactory(username, email, password) {
+                let createdUser = new User(username, email, password);
+                let positionUsername = this.#getUserPositionUsername(createdUser);
+                let positionEmail = this.#getUserPositionEmail(createdUser);
+                if (positionEmail === -1 && positionUsername == positionEmail) {
+                    return createdUser;
+                } else throw new UserExists();
+
+            }
+
+            movieFactory(title, publication, nationality = "NaN", synopsis = "", image = "default.png", resource = new Resource(5, "example.png")){
+                let createdMovie = new Movie(title, publication, nationality,synopsis,image,resource);
+                let position=this.#getProductionPosition(createdMovie);
+                if (position===-1) {
+                    return createdMovie;
+                }else throw new ProductionExists();
+            }
+
+            serieFactory(title, publication, nationality = "NaN", synopsis = "", image = "default.png", resource = new Resource(5, "example.png")){
+                let createdSerie = new Serie(title, publication, nationality,synopsis,image,resource);
+                let position=this.#getProductionPosition(createdSerie);
+                if (position===-1) {
+                    return createdSerie;
+                }else throw new ProductionExists();
             }
         }
 
